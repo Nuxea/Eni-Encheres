@@ -47,11 +47,12 @@
 <header id="header" class="fixed-top header-inner-pages">
     <div class="container d-flex align-items-center ">
         <h1 class="logo me-auto"><a href="${pageContext.request.contextPath}/">ENI-ENCHERES</a></h1>
-<%--        <h1 class="logo me-auto"><a href="#">Détails vente</a></h1>--%>
+        <%--        <h1 class="logo me-auto"><a href="#">Détails vente</a></h1>--%>
         <nav id="navbar" class="navbar">
             <ul>
                 <li><a class="nav-link scrollto active" href="${pageContext.request.contextPath}/">Accueil</a></li>
-                <li><a class="nav-link scrollto" href="${pageContext.request.contextPath}/ListeEncheres">Les Enchères</a></li>
+                <li><a class="nav-link scrollto" href="${pageContext.request.contextPath}/ListeEncheres">Les
+                    Enchères</a></li>
                 <c:if test="${empty utilisateur}">
                     <li class="dropdown"><a href="#"><span>Compte</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
@@ -62,7 +63,8 @@
                     </li>
                 </c:if>
                 <c:if test="${! empty utilisateur}">
-                    <li class="dropdown"><a href="#"><span>Bonjour ${utilisateur.pseudo}</span> <i class="bi bi-chevron-down"></i></a>
+                    <li class="dropdown"><a href="#"><span>Bonjour ${utilisateur.pseudo}</span> <i
+                            class="bi bi-chevron-down"></i></a>
                         <ul>
                             <li><a href="profil">Mon Compte</a></li>
                             <li><a href="${pageContext.request.contextPath}/CreationEnchere">Vendre un article</a></li>
@@ -81,7 +83,7 @@
 
     <fmt:formatDate value="${parsedDate}" var="newParsedDate" type="both" pattern="dd-MM-yyyy à HH:mm"/>
 
-<%--    <p class="mt-5">${pageContext.request.getAttribute("datesOk")}</p>--%>
+    <%--    <p class="mt-5">${pageContext.request.getAttribute("datesOk")}</p>--%>
 
     <div class="container mt-5">
         <div class="portfolio-info d-flex">
@@ -98,13 +100,15 @@
                     </c:if>
                 </p>
                 <p><strong>Fin de l'enchère :</strong>
-                    <%= article.getDateFinEncheres().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")) %></p>
+                    <%= article.getDateFinEncheres().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")) %>
+                </p>
                 <p><strong>Retrait :</strong></p>
                 <p><strong>Vendeur :</strong> ${vendeur.pseudo}</p>
             </div>
 
             <div class="w-50">
-                <img src="${pageContext.request.contextPath}/assets/img/images/poney.jpg" alt="poney" class="img-fluid rounded">
+                <img src="${pageContext.request.contextPath}/assets/img/images/poney.jpg" alt="poney"
+                     class="img-fluid rounded">
             </div>
 
         </div>
@@ -126,24 +130,28 @@
 </form>
 
 <div class="d-flex justify-content-around mt-5">
-    <form action="${pageContext.request.contextPath}/Edition">
 
-        <% session.setAttribute("idArticle", article.getNoArticle()); %>
-
-        <input type="submit" value="Editer la vente" class="btn btn-success">
-
-    </form>
-
-    <form action="${pageContext.request.contextPath}/AnnulerVente" method="post">
-        <div>
+    <c:if test="${ utilisateur.pseudo.equals(vendeur.pseudo)}">
+        <form action="${pageContext.request.contextPath}/Edition">
 
             <% session.setAttribute("idArticle", article.getNoArticle()); %>
 
-            <input type="submit" value="Annuler la vente" class="btn btn-danger"
-                   onclick="return confirm('Voulez-vous vraiment annuler la vente ?')">
+            <input type="submit" value="Editer la vente" class="btn btn-success">
 
-        </div>
-    </form>
+        </form>
+
+
+        <form action="${pageContext.request.contextPath}/AnnulerVente" method="post">
+            <div>
+
+                <% session.setAttribute("idArticle", article.getNoArticle()); %>
+
+                <input type="submit" value="Annuler la vente" class="btn btn-danger"
+                       onclick="return confirm('Voulez-vous vraiment annuler la vente ?')">
+
+            </div>
+        </form>
+    </c:if>
 </div>
 
 <div id="preloader"></div>
