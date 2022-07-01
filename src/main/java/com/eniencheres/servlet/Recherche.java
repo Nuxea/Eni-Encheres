@@ -27,8 +27,8 @@ public class Recherche extends HttpServlet {
 
         String recherche = request.getParameter("recherche");
         String cat = request.getParameter("categorie");
-        Categorie categorieRecherche = Categorie.getCategorieFromSelect(cat);
-        Categorie defaultCategorie = Categorie.getCategorieFromSelect("Toutes");
+//        Categorie categorieRecherche = Categorie.getCategorieFromSelect(cat);
+//        Categorie defaultCategorie = Categorie.getCategorieFromSelect("Toutes");
         List<ArticleVendu> articles = new ArrayList<>();
         List<ArticleVendu> articlesTrouves = new ArrayList<>();
 
@@ -39,7 +39,11 @@ public class Recherche extends HttpServlet {
         }
 
         for (  ArticleVendu article : articles) {
-            if ((article.getDescription().contains(recherche)|| article.getNomArticle().contains(recherche)) && (categorieRecherche.getLibelle().equals(article.getCategorieArticle().getLibelle()) || (categorieRecherche.getLibelle()).equals(defaultCategorie.getLibelle()))) {
+//            if ((article.getDescription().contains(recherche)|| article.getNomArticle().contains(recherche)) && (categorieRecherche.getLibelle().equals(article.getCategorieArticle().getLibelle()) || (categorieRecherche.getLibelle()).equals(defaultCategorie.getLibelle()))) {
+//                articlesTrouves.add(article);
+//            }
+
+            if ((article.getDescription().contains(recherche)|| article.getNomArticle().contains(recherche))) {
                 articlesTrouves.add(article);
             }
         }

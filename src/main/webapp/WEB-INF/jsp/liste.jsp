@@ -84,25 +84,6 @@
     </div>
 </section>
 
-<div id="search">
-    <div class="search-bar">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <h4>Rechercher</h4>
-                    <p>Entrez le nom ou la description de l'article recherché</p>
-                    <form action="${pageContext.request.contextPath}/Recherche" method="post">
-                        <input type="email" name="recherche" placeholder="Rechercher">
-                        <input type="submit" value="Rechercher">
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
 <%--<main id="main">--%>
 <%--    <section class="breadcrumbs mb-3" id="breadcrumbs">--%>
 <%--        <div class="container">--%>
@@ -184,25 +165,43 @@
 <%--                <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>--%>
             </div>
 
-            <ul id="portfolio-flters" class="d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
-                <li data-filter="*" class="filter-active">All</li>
-                <li data-filter=".filter-app">App</li>
-                <li data-filter=".filter-card">Card</li>
-                <li data-filter=".filter-web">Web</li>
-            </ul>
-
-            <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-
-                <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                    <div class="portfolio-img"><img src="${pageContext.request.contextPath}/assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt=""></div>
-                    <div class="portfolio-info">
-                        <h4>App 1</h4>
-                        <p>App</p>
-                        <a href="${pageContext.request.contextPath}/assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
-                        <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            <div id="search">
+                <div class="search-bar">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-6">
+                                <h4>Rechercher</h4>
+                                <p>Entrez le nom ou la description de l'article recherché</p>
+                                <form action="${pageContext.request.contextPath}/Recherche" method="post">
+                                    <input type="text" name="recherche" placeholder="Rechercher">
+                                    <input type="submit" value="Rechercher">
+                                </form>
+                            </div>
+                        </div>
+                        <ul id="portfolio-flters" class="d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
+                            <li data-filter="*" class="filter-active">All</li>
+                            <li data-filter=".filter-INFORMATIQUE">INFORMATIQUE</li>
+                            <li data-filter=".filter-AMEUBLEMENT">AMEUBLEMENT</li>
+                            <li data-filter=".filter-VETEMENT">VETEMENT</li>
+                            <li data-filter=".filter-SPORT_ET_LOISIRS">SPORT & LOISIRS</li>
+                        </ul>
                     </div>
                 </div>
+            </div>
 
+            <div class="row portfolio-container mt-3" data-aos="fade-up" data-aos-delay="200">
+
+                <c:forEach var="art" items="${articles}">
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-AMEUBLEMENT">
+                        <div class="portfolio-img"><img src="${pageContext.request.contextPath}/assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt=""></div>
+                        <div class="portfolio-info">
+                            <h4>${art.nomArticle}</h4>
+                            <p>Prix : ${art.miseAPrix} €</p>
+                            <a href="${pageContext.request.contextPath}/assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="${art.nomArticle}"><i class="bx bx-plus"></i></a>
+                            <a href="AffichageDetailsArticle?idArticle=${art.noArticle}" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                        </div>
+                    </div>
+                </c:forEach>
             </div>
 
         </div>
