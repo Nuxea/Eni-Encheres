@@ -33,10 +33,6 @@
 </head>
 <body class="container">
 
-<%--<c:if test="${ !empty sessionScope.user }">&lt;%&ndash; && sessionScope.user.equals("proprietaire")&ndash;%&gt;--%>
-<%--    <p>Vous êtes ${ sessionScope.user }  !</p>--%>
-<%--</c:if>--%>
-
 <header id="header" class="fixed-top header-inner-pages">
     <div class="container d-flex align-items-center ">
         <h1 class="logo me-auto"><a href="${pageContext.request.contextPath}/">ENI-ENCHERES</a></h1>
@@ -144,17 +140,18 @@
             <legend>Retrait</legend>
             <div class="form-group mb-2">
                 <label for="rue">Rue :</label>
-                <input type="text" name="rue" id="rue" class="form-control"/>
+                <input type="text" name="rue" id="rue" class="form-control" value="${utilisateur.rue}"/>
             </div>
 
             <div class="form-group mb-2">
                 <label for="codePostal">Code postal :</label>
-                <input type="text" name="codePostal" id="codePostal" class="form-control"/>
+                <input type="text" name="codePostal" id="codePostal" class="form-control"
+                       value="${utilisateur.code_postal}"/>
             </div>
 
             <div class="form-group mb-2">
                 <label for="ville">Ville :</label>
-                <input type="text" name="ville" id="ville" class="form-control"/>
+                <input type="text" name="ville" id="ville" class="form-control" value="${utilisateur.ville}"/>
             </div>
 
         </fieldset>
