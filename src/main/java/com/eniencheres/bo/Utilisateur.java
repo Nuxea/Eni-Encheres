@@ -63,6 +63,10 @@ public class Utilisateur {
         this.mot_de_passe = mot_de_passe;
     }
 
+    public Utilisateur(int no_utilisateur) {
+        this.no_utilisateur = no_utilisateur;
+    }
+
     public int getNo_utilisateur() {
         return no_utilisateur;
     }

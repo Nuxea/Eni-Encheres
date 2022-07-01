@@ -39,7 +39,9 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
         preparedStatement.setString(6, utilisateur.getRue());
         preparedStatement.setString(7, utilisateur.getCode_postal());
         preparedStatement.setString(8, utilisateur.getVille());
-        preparedStatement.setInt(9, utilisateur.getNo_utilisateur());
+        preparedStatement.setString(9, utilisateur.getMot_de_passe());
+        preparedStatement.setInt(10, utilisateur.getCredit());
+        preparedStatement.setBoolean(11, utilisateur.isAdministrateur());
 
         preparedStatement.executeUpdate();
     }
@@ -134,21 +136,23 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
         }
     }
 
-//    @Override
-//    public void recuperationMotDePasse(Utilisateur utilisateur) {
-//        try (Connection cnx = ConnectionProvider.getConnection()) {
-//            PreparedStatement statement = cnx.prepareStatement("SELECT * FROM UTILISATEURS WHERE mot_de_passe=? AND no_utilisateur=?");
-//            statement.setString(1, utilisateur.getMot_de_passe());
-//            statement.setInt(2, utilisateur.getNo_utilisateur());
-//
-//            ResultSet resultSet = statement.executeQuery();
-//            while (resultSet.next()) {
-//                getResultSet(resultSet);
-//            }
-//        } catch (Exception e){
-//            e.printStackTrace();
-//        }
-//    }
+    @Override
+    public void deleteUtilisateur(Utilisateur utilisateur) {
+        try (Connection cnx = ConnectionProvider.getConnection()) {
+            try {
+                PreparedStatement statement = cnx.prepareStatement("DELETE FROM UTILISATEURS WHERE no_utilisateur = ?");
+                statement.setInt(1, utilisateur.getNo_utilisateur());
+
+                statement.executeUpdate();
+
+                statement.close();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
 
 }

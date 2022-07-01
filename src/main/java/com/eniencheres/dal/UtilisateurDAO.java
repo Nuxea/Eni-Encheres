@@ -13,6 +13,6 @@ public interface UtilisateurDAO {
 
     void updateMotDePasse(Utilisateur utilisateur);
 
-//    void recuperationMotDePasse(Utilisateur utilisateur);
+    void deleteUtilisateur(Utilisateur utilisateur);
 }
 

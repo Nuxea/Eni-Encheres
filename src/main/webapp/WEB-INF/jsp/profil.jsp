@@ -126,7 +126,7 @@
                             </ul>
                             <div class="tab-content pt-2">
                                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                                    <div class="row">
+                                    <div class="row mt-3">
                                         <div class="col-lg-3 col-md-4 label">Pseudo</div>
                                         <div class="col-lg-9 col-md-8">${utilisateur.pseudo}</div>
                                     </div>
@@ -155,6 +155,13 @@
                                         <div class="col-lg-3 col-md-4 label">Téléphone</div>
                                         <div class="col-lg-9 col-md-8">${utilisateur.telephone}</div>
                                     </div>
+
+                                    <div class="d-flex justify-content-end">
+                                        <form action="supprimer" method="post">
+                                            <button type="submit" class="btn btn-danger">Supprimer votre Compte</button>
+                                        </form>
+
+                                    </div>
                                 </div>
 
                                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
@@ -162,7 +169,7 @@
                                 <!-- Profile Edit Form -->
                                     <form action="modifier" method="post">
                                         <div hidden class="col-lg-9 col-md-8">
-                                            <input name="no_utilisateur" type="number" class="form-control" id="id" value="${utilisateur.no_utilisateur}">
+                                            <input name="no_utilisateur" type="number" class="form-control" id="id2" value="${utilisateur.no_utilisateur}">
                                         </div>
 
                                         <div class="row mb-3">
