@@ -41,7 +41,7 @@ public class Categorie {
             case "SPORT_ET_LOISIRS" :
                 return  new Categorie(4, NomCategories.SPORT_ET_LOISIRS);
             default:
-                return  new Categorie(5, NomCategories.TOUTES);
+                return  null;
         }
     }
 
@@ -56,7 +56,8 @@ public class Categorie {
             case 4:
                 return NomCategories.SPORT_ET_LOISIRS;
             default:
-                return NomCategories.TOUTES;
+                return null;
+
         }
     }
 }

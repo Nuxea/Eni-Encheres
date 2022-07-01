@@ -1,6 +1,8 @@
 package com.eniencheres.servlet;
 
 import com.eniencheres.bo.ArticleVendu;
+import com.eniencheres.bo.Categorie;
+import com.eniencheres.bo.NomCategories;
 import com.eniencheres.dal.jdbc.ArticleVenduDAOJdbcImpl;
 
 import javax.servlet.ServletException;
@@ -30,6 +32,14 @@ public class listeEncheres extends HttpServlet {
         }
 
         request.setAttribute("articles", articles);
+
+        List<Categorie> categories = new ArrayList<>();
+        for (int i = 0; i <= NomCategories.values().length; i++) {
+            categories.add(new Categorie(i));
+
+        }
+        request.setAttribute("categories", categories);
+
 
         getServletContext().getRequestDispatcher("/WEB-INF/jsp/liste.jsp").forward(request, response);
 

@@ -162,7 +162,7 @@
 
             <div class="section-title">
                 <h2>Liste des enchères</h2>
-<%--                <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>--%>
+                <%--                <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>--%>
             </div>
 
             <div id="search">
@@ -178,12 +178,17 @@
                                 </form>
                             </div>
                         </div>
-                        <ul id="portfolio-flters" class="d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
+                        <ul id="portfolio-flters" class="d-flex justify-content-center" data-aos="fade-up"
+                            data-aos-delay="100">
                             <li data-filter="*" class="filter-active">All</li>
-                            <li data-filter=".filter-INFORMATIQUE">INFORMATIQUE</li>
-                            <li data-filter=".filter-AMEUBLEMENT">AMEUBLEMENT</li>
-                            <li data-filter=".filter-VETEMENT">VETEMENT</li>
-                            <li data-filter=".filter-SPORT_ET_LOISIRS">SPORT & LOISIRS</li>
+                            <c:forEach var="cat" items="${categories}" >
+                                <li data-filter=".filter-${cat.libelle}">${cat.libelle}</li>
+                            </c:forEach>
+
+                            <%--                            <li data-filter=".filter-INFORMATIQUE">INFORMATIQUE</li>--%>
+                            <%--                            <li data-filter=".filter-AMEUBLEMENT">AMEUBLEMENT</li>--%>
+                            <%--                            <li data-filter=".filter-VETEMENT">VETEMENT</li>--%>
+                            <%--                            <li data-filter=".filter-SPORT_ET_LOISIRS">SPORT & LOISIRS</li>--%>
                         </ul>
                     </div>
                 </div>
@@ -192,13 +197,20 @@
             <div class="row portfolio-container mt-3" data-aos="fade-up" data-aos-delay="200">
 
                 <c:forEach var="art" items="${articles}">
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-AMEUBLEMENT">
-                        <div class="portfolio-img"><img src="${pageContext.request.contextPath}/assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt=""></div>
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-${art.categorieArticle.libelle}">
+                        <div class="portfolio-img"><img
+                                src="${pageContext.request.contextPath}/assets/img/portfolio/portfolio-1.jpg"
+                                class="img-fluid"
+                                alt=""></div>
                         <div class="portfolio-info">
                             <h4>${art.nomArticle}</h4>
                             <p>Prix : ${art.miseAPrix} €</p>
-                            <a href="${pageContext.request.contextPath}/assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="${art.nomArticle}"><i class="bx bx-plus"></i></a>
-                            <a href="AffichageDetailsArticle?idArticle=${art.noArticle}" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                            <a href="${pageContext.request.contextPath}/assets/img/portfolio/portfolio-1.jpg"
+                               data-gallery="portfolioGallery" class="portfolio-lightbox preview-link"
+                               title="${art.nomArticle}"><i
+                                    class="bx bx-plus"></i></a>
+                            <a href="AffichageDetailsArticle?idArticle=${art.noArticle}" class="details-link"
+                               title="More Details"><i class="bx bx-link"></i></a>
                         </div>
                     </div>
                 </c:forEach>
@@ -228,7 +240,8 @@
                 <div class="col-lg-6 col-md-6 footer-links">
                     <h4>Liens Utiles</h4>
                     <ul>
-                        <li><i class="bx bx-chevron-right"></i> <a href="${pageContext.request.contextPath}/">Accueil</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a
+                                href="${pageContext.request.contextPath}/">Accueil</a></li>
                         <li><i class="bx bx-chevron-right"></i> <a href="#">Les Enchères</a></li>
                     </ul>
                 </div>

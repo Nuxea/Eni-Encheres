@@ -192,7 +192,8 @@
                         <ul>
                             <li><strong>Catégorie</strong>: ${article.categorieArticle.libelle}</li>
                             <li><strong>Mise à Prix</strong>: ${article.miseAPrix} €</li>
-                            <li><strong>Fin de l'enchère</strong>: <%= article.getDateFinEncheres().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")) %></li>
+                            <li><strong>Fin de l'enchère</strong>: <%=
+                            article.getDateFinEncheres().format(DateTimeFormatter.ofPattern("dd-MM-yyyy à HH:mm")) %></li>
                             <li><strong>Retrait</strong>: ${vendeur.ville} </li>
                         </ul>
                     </div>
