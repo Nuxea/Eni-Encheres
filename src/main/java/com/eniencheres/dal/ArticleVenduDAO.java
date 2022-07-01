@@ -1,6 +1,7 @@
 package com.eniencheres.dal;
 
 import com.eniencheres.bo.ArticleVendu;
+import com.eniencheres.bo.Utilisateur;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -15,6 +16,8 @@ public interface ArticleVenduDAO {
     public  void annulerVente(int idArticle) throws SQLException;
 
     public  int editerEnchere(ArticleVendu articleVendu) throws SQLException;
+
+    public Utilisateur getUtilisateurFromIdArticle(int idArticle) throws SQLException;
 
 
 }

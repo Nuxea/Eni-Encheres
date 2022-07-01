@@ -100,7 +100,7 @@
                 <p><strong>Fin de l'enchère :</strong>
                     <%= article.getDateFinEncheres().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")) %></p>
                 <p><strong>Retrait :</strong></p>
-                <p><strong>Vendeur :</strong> ${article.noArticle}</p>
+                <p><strong>Vendeur :</strong> ${vendeur.pseudo}</p>
             </div>
 
             <div class="w-50">

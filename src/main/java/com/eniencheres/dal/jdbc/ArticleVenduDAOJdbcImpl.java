@@ -3,6 +3,7 @@ package com.eniencheres.dal.jdbc;
 import com.eniencheres.bo.ArticleVendu;
 import com.eniencheres.bo.Categorie;
 import com.eniencheres.bo.NomCategories;
+import com.eniencheres.bo.Utilisateur;
 import com.eniencheres.dal.ArticleVenduDAO;
 
 
@@ -182,5 +183,49 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
             }
         }
         return articleVendu.getNoArticle();
+    }
+
+    public Utilisateur getUtilisateurFromIdArticle(int idArticle) throws SQLException {
+        ConnectionProvider cp = new ConnectionProvider();
+
+        try (Connection cnx = ConnectionProvider.getConnection()) {
+            PreparedStatement pstmt = null;
+            ResultSet rs = null;
+            int idUtilisateur = 0;
+            try {
+                pstmt = cnx.prepareStatement(
+                        "SELECT no_utilisateur FROM articles_vendus WHERE no_article = ?");
+
+                pstmt.setInt(1, idArticle);
+                rs = pstmt.executeQuery();
+
+                if (rs.next()) {
+                    idUtilisateur = (rs.getInt("no_utilisateur"));
+                }
+
+                pstmt = cnx.prepareStatement("SELECT * FROM utilisateurs WHERE no_utilisateur = ?");
+
+                pstmt.setInt(1, idUtilisateur);
+                rs = pstmt.executeQuery();
+
+                Utilisateur utilisateur = null;
+                if (rs.next()) {
+                    utilisateur = new Utilisateur();
+                    utilisateur.setNo_utilisateur(rs.getInt("no_utilisateur"));
+                    utilisateur.setNom(rs.getString("nom"));
+                    utilisateur.setPrenom(rs.getString("prenom"));
+                    utilisateur.setRue(rs.getString("rue"));
+                    utilisateur.setCode_postal(rs.getString("code_postal"));
+                    utilisateur.setVille(rs.getString("ville"));
+                    utilisateur.setPseudo(rs.getString("pseudo"));
+                    utilisateur.setEmail(rs.getString("email"));
+                    utilisateur.setTelephone(rs.getString("telephone"));
+
+                }
+                return utilisateur;
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 }

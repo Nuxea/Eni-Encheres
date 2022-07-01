@@ -38,7 +38,7 @@
 
                         <div class="col-12">
                             <button class="btn btn-lg btn-success btn-block text-uppercase" type="submit">Se Connecter</button>
-                            <a class="btn btn-lg btn-primary btn-block text-uppercase mt-2 small" href="inscription">S'inscrire'</a>
+                            <a class="btn btn-lg btn-primary btn-block text-uppercase mt-2 small" href="inscription">S'inscrire</a>
                             <a class="btn btn-lg btn-outline-danger btn-block text-uppercase mt-2 small" href="${pageContext.request.contextPath}/">Annuler</a>
                         </div>
 
