@@ -1513,6 +1513,13 @@ section {
   padding: 4px 8px;
   width: calc(100% - 100px);
 }
+
+form input[type=number] {
+  border: 0;
+  padding: 4px 8px;
+  width: calc(100% - 100px);
+}
+
 #search .search-bar form input[type=submit] {
   position: absolute;
   top: 0;

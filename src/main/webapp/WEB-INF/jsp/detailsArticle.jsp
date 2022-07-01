@@ -41,7 +41,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Détails Article</title>
 </head>
-<body class="container">
+<body>
 
 
 <header id="header" class="fixed-top header-inner-pages">
@@ -78,85 +78,168 @@
     </div>
 </header>
 
-<section class="portfolio-details">
-    <fmt:parseDate value="${article.dateFinEncheres}" pattern="yyyy-MM-dd" var="parsedDate" type="both"/>
+<%--<section class="portfolio-details">--%>
+<%--    <fmt:parseDate value="${article.dateFinEncheres}" pattern="yyyy-MM-dd" var="parsedDate" type="both"/>--%>
 
-    <fmt:formatDate value="${parsedDate}" var="newParsedDate" type="both" pattern="dd-MM-yyyy à HH:mm"/>
+<%--    <fmt:formatDate value="${parsedDate}" var="newParsedDate" type="both" pattern="dd-MM-yyyy à HH:mm"/>--%>
 
-    <%--    <p class="mt-5">${pageContext.request.getAttribute("datesOk")}</p>--%>
+<%--    &lt;%&ndash;    <p class="mt-5">${pageContext.request.getAttribute("datesOk")}</p>&ndash;%&gt;--%>
 
-    <div class="container mt-5">
-        <div class="portfolio-info d-flex">
-            <div class="w-50">
-                <h2>${article.nomArticle}</h2>
-                <p><strong>Catégorie :</strong> ${article.categorieArticle.libelle}</p>
-                <p><strong>Meilleure offre :</strong></p>
-                <p><strong>Mise à prix :</strong> ${article.miseAPrix}
-                    <c:if test="${ article.miseAPrix <= 1}">
-                        <c:out value="point"/>
-                    </c:if>
-                    <c:if test="${ article.miseAPrix > 1}">
-                        <c:out value="points"/>
-                    </c:if>
-                </p>
-                <p><strong>Fin de l'enchère :</strong>
-                    <%= article.getDateFinEncheres().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")) %>
-                </p>
-                <p><strong>Retrait :</strong></p>
-                <p><strong>Vendeur :</strong> ${vendeur.pseudo}</p>
-            </div>
+<%--    <div class="container mt-5">--%>
+<%--        <div class="portfolio-info d-flex">--%>
+<%--            <div class="w-50">--%>
+<%--                <h2>${article.nomArticle}</h2>--%>
+<%--                <p><strong>Catégorie :</strong> ${article.categorieArticle.libelle}</p>--%>
+<%--                <p><strong>Meilleure offre :</strong></p>--%>
+<%--                <p><strong>Mise à prix :</strong> ${article.miseAPrix}--%>
+<%--                    <c:if test="${ article.miseAPrix <= 1}">--%>
+<%--                        <c:out value="point"/>--%>
+<%--                    </c:if>--%>
+<%--                    <c:if test="${ article.miseAPrix > 1}">--%>
+<%--                        <c:out value="points"/>--%>
+<%--                    </c:if>--%>
+<%--                </p>--%>
+<%--                <p><strong>Fin de l'enchère :</strong>--%>
+<%--                    <%= article.getDateFinEncheres().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")) %>--%>
+<%--                </p>--%>
+<%--                <p><strong>Retrait :</strong></p>--%>
+<%--                <p><strong>Vendeur :</strong> ${vendeur.pseudo}</p>--%>
+<%--            </div>--%>
 
-            <div class="w-50">
-                <img src="${pageContext.request.contextPath}/assets/img/images/poney.jpg" alt="poney"
-                     class="img-fluid rounded">
-            </div>
+<%--            <div class="w-50">--%>
+<%--                <img src="${pageContext.request.contextPath}/assets/img/images/poney.jpg" alt="poney"--%>
+<%--                     class="img-fluid rounded">--%>
+<%--            </div>--%>
+
+<%--        </div>--%>
+<%--        <div class="portfolio-description">--%>
+<%--            <h2>Description :</h2>--%>
+<%--            <p>${article.description}</p>--%>
+<%--        </div>--%>
+
+<%--    </div>--%>
+<%--</section>--%>
+
+<%--<form action="${pageContext.request.contextPath}/AffichageDetailsArticle" method="post">--%>
+<%--    <div class="form-group mb-5">--%>
+<%--        <label for="proposition">Ma proposition : </label>--%>
+<%--        <input type="number" id="proposition" name="proposition">--%>
+<%--        <input type="submit" value="Enchérir" class="btn btn-primary">--%>
+<%--    </div>--%>
+
+<%--</form>--%>
+
+<%--<div class="d-flex justify-content-around mt-5">--%>
+
+<%--    <c:if test="${ utilisateur.pseudo.equals(vendeur.pseudo)}">--%>
+<%--        <form action="${pageContext.request.contextPath}/Edition">--%>
+
+<%--            <% session.setAttribute("idArticle", article.getNoArticle()); %>--%>
+
+<%--            <input type="submit" value="Editer la vente" class="btn btn-success">--%>
+
+<%--        </form>--%>
+
+
+<%--        <form action="${pageContext.request.contextPath}/AnnulerVente" method="post">--%>
+<%--            <div>--%>
+
+<%--                <% session.setAttribute("idArticle", article.getNoArticle()); %>--%>
+
+<%--                <input type="submit" value="Annuler la vente" class="btn btn-danger"--%>
+<%--                       onclick="return confirm('Voulez-vous vraiment annuler la vente ?')">--%>
+
+<%--            </div>--%>
+<%--        </form>--%>
+<%--    </c:if>--%>
+<%--</div>--%>
+
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+
+            <ol>
+                <li><a href="${pageContext.request.contextPath}/">Home</a></li>
+                <li>Détails de l'enchère</li>
+            </ol>
+            <h2>Détails</h2>
 
         </div>
-        <div class="portfolio-description">
-            <h2>Description :</h2>
-            <p>${article.description}</p>
-        </div>
+    </section><!-- End Breadcrumbs -->
 
-    </div>
-</section>
+    <!-- ======= Portfolio Details Section ======= -->
+    <section id="portfolio-details" class="portfolio-details">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-8">
+                    <div class="portfolio-details-slider swiper">
+                        <div class="swiper-wrapper align-items-center">
 
-<form action="${pageContext.request.contextPath}/AffichageDetailsArticle" method="post">
-    <div class="form-group mb-5">
-        <label for="proposition">Ma proposition : </label>
-        <input type="number" id="proposition" name="proposition">
-        <input type="submit" value="Enchérir" class="btn btn-primary">
-    </div>
+                            <div class="swiper-slide">
+                                <img src="${pageContext.request.contextPath}/assets/img/portfolio/portfolio-details-2.jpg" alt="">
+                            </div>
 
-</form>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
 
-<div class="d-flex justify-content-around mt-5">
-
-    <c:if test="${ utilisateur.pseudo.equals(vendeur.pseudo)}">
-        <form action="${pageContext.request.contextPath}/Edition">
-
-            <% session.setAttribute("idArticle", article.getNoArticle()); %>
-
-            <input type="submit" value="Editer la vente" class="btn btn-success">
-
-        </form>
-
-
-        <form action="${pageContext.request.contextPath}/AnnulerVente" method="post">
-            <div>
-
-                <% session.setAttribute("idArticle", article.getNoArticle()); %>
-
-                <input type="submit" value="Annuler la vente" class="btn btn-danger"
-                       onclick="return confirm('Voulez-vous vraiment annuler la vente ?')">
+                <div class="col-lg-4">
+                    <div class="portfolio-info">
+                        <h3>${article.nomArticle}</h3>
+                        <ul>
+                            <li><strong>Catégorie</strong>: ${article.categorieArticle.libelle}</li>
+                            <li><strong>Mise à Prix</strong>: ${article.miseAPrix} €</li>
+                            <li><strong>Fin de l'enchère</strong>: <%= article.getDateFinEncheres().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")) %></li>
+                            <li><strong>Retrait</strong>: ${vendeur.ville} </li>
+                        </ul>
+                    </div>
+                    <div class="portfolio-description">
+                        <h2><strong>Vendeur</strong>: ${vendeur.pseudo}</h2>
+                        <p>${article.description}</p>
+                    </div>
+                </div>
 
             </div>
-        </form>
-    </c:if>
-</div>
+            <div class="container-fluid breadcrumbs">
+                <div class="container d-flex justify-content-between align-items-center">
+                    <div class="col-5 mt-3">
+                        <form action="${pageContext.request.contextPath}/AffichageDetailsArticle" method="post">
+                                <label hidden for="proposition">Ma proposition : </label>
+                                <input type="number" id="proposition" name="proposition" placeholder="Ma Proposition :">
+                                <input type="submit" value="Enchérir" class="btn btn-primary">
+                        </form>
+                    </div>
 
-<div id="preloader"></div>
-<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-        class="bi bi-arrow-up-short"></i></a>
+                    <c:if test="${ utilisateur.pseudo.equals(vendeur.pseudo)}">
+                        <div class="row">
+                            <div class="col">
+                                <form action="${pageContext.request.contextPath}/Edition">
+                                    <% session.setAttribute("idArticle", article.getNoArticle()); %>
+                                    <input type="submit" value="Editer la vente" class="btn btn-success">
+                                </form>
+                            </div>
+
+                            <div class="col">
+                                <form action="${pageContext.request.contextPath}/AnnulerVente" method="post">
+                                    <% session.setAttribute("idArticle", article.getNoArticle()); %>
+                                    <input type="submit" value="Annuler la vente" class="btn btn-danger" onclick="return confirm('Voulez-vous vraiment annuler la vente ?')">
+                                </form>
+                            </div>
+
+                        </div>
+                    </c:if>
+                </div>
+
+
+            </div>
+        </div>
+    </section><!-- End Portfolio Details Section -->
+
+</main><!-- End #main -->
+
 
 <!-- Vendor JS Files -->
 <script src="${pageContext.request.contextPath}/assets/vendor/aos/aos.js"></script>
