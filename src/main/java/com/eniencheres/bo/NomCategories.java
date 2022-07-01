@@ -4,7 +4,7 @@ public enum NomCategories {
     INFORMATIQUE,
     AMEUBLEMENT,
     VETEMENT,
-    SPORT_ET_LOISIRS,
+    SPORT_ET_LOISIRS;
 //    TOUTES;
 
 
