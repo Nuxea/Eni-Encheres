@@ -43,20 +43,24 @@
 <%--</c:if>--%>
 
 <jsp:useBean id="article"   type="com.eniencheres.bo.ArticleVendu" scope="request" />
-
+<jsp:useBean id="utilisateur" scope="session" type="com.eniencheres.bo.Utilisateur"/>
 <header id="header" class="fixed-top header-inner-pages">
-    <div class="container d-flex align-items-center ">
-        <h1 class="logo me-auto"><a href="${pageContext.request.contextPath}/">ENI-ENCHERES</a></h1>
+    <div class="container d-flex align-items-center">
+
+        <h1 class="logo me-auto">
+            <a href="${pageContext.request.contextPath}/">ENI-ENCHERES</a>
+        </h1>
+
         <nav id="navbar" class="navbar">
             <ul>
                 <li><a class="nav-link scrollto active" href="${pageContext.request.contextPath}/">Accueil</a></li>
                 <li><a class="nav-link scrollto" href="${pageContext.request.contextPath}/ListeEncheres">Les Enchères</a></li>
+
                 <c:if test="${empty utilisateur}">
                     <li class="dropdown"><a href="#"><span>Compte</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
                             <li><a href="inscription">Inscription</a></li>
                             <li><a href="connexion">Connexion</a></li>
-
                         </ul>
                     </li>
                 </c:if>
@@ -72,6 +76,7 @@
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->
+
     </div>
 </header>
 

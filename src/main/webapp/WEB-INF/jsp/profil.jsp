@@ -43,7 +43,6 @@
                         <ul>
                             <li><a href="inscription">Inscription</a></li>
                             <li><a href="connexion">Connexion</a></li>
-
                         </ul>
                     </li>
                 </c:if>
