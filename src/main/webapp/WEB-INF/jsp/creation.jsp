@@ -81,9 +81,9 @@
         <div class="form-group mb-2">
             <label for="article">Article</label>
             <input type="text" name="article" id="article" class="form-control"/>
-            <c:if test="${!empty errorForm.getErreurNom }">
+            <c:if test="${!empty errorForm.erreurNom }">
                 <div class="alert alert-danger">
-                    <strong>Erreur!</strong> <c:out value="${errorForm.getErreurNom}"/>
+                    <strong>Erreur!</strong> <c:out value="${errorForm.erreurNom}"/>
                 </div>
             </c:if>
         </div>
@@ -91,6 +91,11 @@
         <div class="form-group mb-2">
             <label for="description">Description</label>
             <textarea name="description" id="description" cols="30" rows="10" class="form-control"></textarea>
+            <c:if test="${!empty errorForm.erreurDescription }">
+                <div class="alert alert-danger">
+                    <strong>Erreur!</strong> <c:out value="${errorForm.erreurDescription}"/>
+                </div>
+            </c:if>
         </div>
 
         <div class="form-group mb-2">
@@ -111,6 +116,11 @@
         <div class="form-group mb-2">
             <label for="miseAPrix">Mise à prix</label>
             <input type="number" name="miseAPrix" id="miseAPrix" class="form-control"/>
+            <c:if test="${!empty errorForm.erreurPrix }">
+                <div class="alert alert-danger">
+                    <strong>Erreur!</strong> <c:out value="${errorForm.erreurPrix}"/>
+                </div>
+            </c:if>
         </div>
 
         <div class="form-group mb-2">
@@ -123,9 +133,9 @@
             <label for="dateFin">Fin de l'enchère</label>
             <input type="date" name="dateFin" id="dateFin" class="form-control"/>
             <input type="time" name="heureFin" id="heureFin" class="form-control"/>
-            <c:if test="${!empty errorForm.getErreurDateFin }">
+            <c:if test="${!empty errorForm.erreurDateFin }">
                 <div class="alert alert-danger">
-                    <strong>Erreur!</strong> <c:out value="${errorForm.getErreurDateFin}"/>
+                    <strong>Erreur!</strong> <c:out value="${errorForm.erreurDateFin}"/>
                 </div>
             </c:if>
         </div>
@@ -148,8 +158,6 @@
             </div>
 
         </fieldset>
-
-        <%--    <input type="datetime-local"  />--%>
 
         <div class="d-flex justify-content-around">
             <input type="submit" value="Enregistrer" class="btn btn-primary"

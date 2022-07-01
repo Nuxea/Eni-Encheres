@@ -42,14 +42,19 @@ public class creationEnchere extends HttpServlet {
         LocalDateTime dateEtHeureFin = LocalTime.parse(request.getParameter("heureFin"), DateTimeFormatter.ofPattern(
                 "HH" +
                         ":mm")).atDate(dateFin);
+        int miseAPrix = 0;
+        if (request.getParameter("miseAPrix").isEmpty()) {
+            miseAPrix = 0;
+        }   else {
+            miseAPrix = Integer.parseInt(request.getParameter("miseAPrix"));
+        }
 
         boolean nomArticleOk =
                 request.getParameter("article").length() > 0;
+        boolean descriptionOk = request.getParameter("description").length() > 0;
         boolean finApresDebut = dateEtHeureDebut.isBefore(dateEtHeureFin);
-
-        boolean creationOk = nomArticleOk && finApresDebut;
-
-        int miseAPrix = Integer.parseInt(request.getParameter("miseAPrix"));
+        boolean miseAPrixOk = request.getParameter("miseAPrix").length() > 0;
+        boolean creationOk = nomArticleOk && finApresDebut && descriptionOk && miseAPrixOk;
 
         ArticleVendu articleVendu = new ArticleVendu(
                 request.getParameter("article"),
@@ -82,13 +87,18 @@ public class creationEnchere extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/jsp/detailsArticle.jsp").forward(request, response);
         } else {
             FormErrors errorForm = new FormErrors();
-            if(!nomArticleOk) {
+            if (!nomArticleOk) {
                 errorForm.setErreurNom("Le nom de l'article doit être renseigné");
             }
-            if(!finApresDebut) {
+            if (!finApresDebut) {
                 errorForm.setErreurDateFin("La date de fin doit être après la date de début");
             }
-
+            if (!descriptionOk) {
+                errorForm.setErreurDescription("La description doit être renseignée");
+            }
+            if (!miseAPrixOk) {
+                errorForm.setErreurPrix("La mise à prix doit être renseignée");
+            }
 
             request.setAttribute("errorForm", errorForm);
 
