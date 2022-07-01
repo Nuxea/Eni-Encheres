@@ -7,8 +7,8 @@
             driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
             type="javax.sql.DataSource"
 
-            url="jdbc:sqlserver://localhost;databasename=ENI-ENCHERES"
-            username="user_applicatif"
+            url="jdbc:sqlserver://localhost:1433;databasename=ENI-ENCHERES"
+            username="sa"
             password="Pa$$w0rd"
     />
 </Context>

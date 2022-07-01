@@ -8,4 +8,22 @@
         <welcome-file>/WEB-INF/jsp/accueil.jsp</welcome-file>
     </welcome-file-list>
 
+    <servlet>
+        <servlet-name>AffichageDetailsArticle</servlet-name>
+        <servlet-class>com.eniencheres.servlet.AffichageDetailsArticle</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AffichageDetailsArticle</servlet-name>
+        <url-pattern>/AffichageDetailsArticle</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ListeEncheres</servlet-name>
+        <servlet-class>com.eniencheres.servlet.listeEncheres</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListeEncheres</servlet-name>
+        <url-pattern>/ListeEncheres</url-pattern>
+    </servlet-mapping>
+
 </web-app>
