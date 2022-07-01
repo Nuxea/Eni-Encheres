@@ -41,7 +41,7 @@
                         <ul>
                             <li><a href="inscription">Inscription</a></li>
                             <li><a href="connexion">Connexion</a></li>
-                            <li><a href="${pageContext.request.contextPath}/CreationEnchere">Vendre un article</a></li>
+
                         </ul>
                     </li>
                 </c:if>
@@ -49,6 +49,7 @@
                     <li class="dropdown"><a href="#"><span>Bonjour ${utilisateur.pseudo}</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
                             <li><a href="profil">Mon Compte</a></li>
+                            <li><a href="${pageContext.request.contextPath}/CreationEnchere">Vendre un article</a></li>
                             <li><a href="deconnexion">Déconnexion</a></li>
                         </ul>
                     </li>

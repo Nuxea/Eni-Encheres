@@ -36,13 +36,14 @@
 
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a class="nav-link active" href="#">Accueil</a></li>
-                <li><a class="nav-link" href="#">Les Enchères</a></li>
+                <li><a class="nav-link scrollto active" href="${pageContext.request.contextPath}/">Accueil</a></li>
+                <li><a class="nav-link scrollto" href="${pageContext.request.contextPath}/ListeEncheres">Les Enchères</a></li>
                 <c:if test="${empty utilisateur}">
                     <li class="dropdown"><a href="#"><span>Compte</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
                             <li><a href="inscription">Inscription</a></li>
                             <li><a href="connexion">Connexion</a></li>
+
                         </ul>
                     </li>
                 </c:if>
@@ -50,6 +51,7 @@
                     <li class="dropdown"><a href="#"><span>Bonjour ${utilisateur.pseudo}</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
                             <li><a href="profil">Mon Compte</a></li>
+                            <li><a href="${pageContext.request.contextPath}/CreationEnchere">Vendre un article</a></li>
                             <li><a href="deconnexion">Déconnexion</a></li>
                         </ul>
                     </li>

@@ -44,7 +44,7 @@ public class creationEnchere extends HttpServlet {
                         ":mm")).atDate(dateFin);
 
         boolean nomArticleOk =
-                request.getParameter("nomArticle").length() > 0 || (request.getParameter("nomArticle")) != null;
+                request.getParameter("article").length() > 0;
         boolean finApresDebut = dateEtHeureDebut.isBefore(dateEtHeureFin);
 
         boolean creationOk = nomArticleOk && finApresDebut;

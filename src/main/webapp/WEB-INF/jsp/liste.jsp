@@ -47,33 +47,43 @@
 </head>
 <body class="container">
 
-<%--<c:if test="${ !empty sessionScope.user }">--%>
-<%--    <p>Vous êtes ${ sessionScope.user }  !</p>--%>
-<%--</c:if>--%>
 
 <header id="header" class="fixed-top header-inner-pages">
     <div class="container d-flex align-items-center ">
-        <h1 class="logo me-auto"><a href="#">Liste des enchères</a></h1>
+        <h1 class="logo me-auto"><a href="${pageContext.request.contextPath}/">ENI-ENCHERES</a></h1>
         <nav id="navbar" class="navbar">
             <ul>
-                <li class="ms-3"><a class="nav-link scrollto active"
-                                    href="${pageContext.request.contextPath}/ListeEncheres">Enchères</a>
-                </li>
-                <li class="ms-3"><a class="nav-link scrollto active"
-                                    href="${pageContext.request.contextPath}/CreationEnchere">Vendre
-                    un
-                    article</a></li>
-                <li class="ms-3"><a class="nav-link scrollto active" href="#/*profil.jsp*/">Mon profil</a></li>
-                <li class="ms-3"><a class="nav-link scrollto active" href="#/*logout.jsp*/">Déconnexion</a></li>
+                <li><a class="nav-link scrollto active" href="${pageContext.request.contextPath}/">Accueil</a></li>
+                <li><a class="nav-link scrollto" href="${pageContext.request.contextPath}/ListeEncheres">Les
+                    Enchères</a></li>
+                <c:if test="${empty utilisateur}">
+                    <li class="dropdown"><a href="#"><span>Compte</span> <i class="bi bi-chevron-down"></i></a>
+                        <ul>
+                            <li><a href="inscription">Inscription</a></li>
+                            <li><a href="connexion">Connexion</a></li>
+
+                        </ul>
+                    </li>
+                </c:if>
+                <c:if test="${! empty utilisateur}">
+                    <li class="dropdown"><a href="#"><span>Bonjour ${utilisateur.pseudo}</span> <i
+                            class="bi bi-chevron-down"></i></a>
+                        <ul>
+                            <li><a href="profil">Mon Compte</a></li>
+                            <li><a href="${pageContext.request.contextPath}/CreationEnchere">Vendre un article</a></li>
+                            <li><a href="deconnexion">Déconnexion</a></li>
+                        </ul>
+                    </li>
+                </c:if>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
-        </nav>
+        </nav><!-- .navbar -->
     </div>
 </header>
 <main id="main">
     <section class="breadcrumbs mb-3" id="breadcrumbs">
         <div class="container">
-            <h2>Filtre</h2>
+            <h2 class="mb-0">Filtre</h2>
         </div>
     </section>
     <form method="post" action="${pageContext.request.contextPath}/Recherche">
@@ -103,12 +113,11 @@
     </form>
     <div>
         <div class="row">
-
+            <h2>Liste des enchères</h2>
             <c:forEach var="art" items="${articles}">
                 <fmt:parseDate value="${art.dateFinEncheres}" pattern="yyyy-MM-dd" var="parsedDate" type="both"/>
 
                 <fmt:formatDate value="${parsedDate}" var="newParsedDate" type="both" pattern="dd-MM-yyyy à HH:mm"/>
-
 
 
                 <a href="AffichageDetailsArticle?idArticle=${art.noArticle}" class="col-lg-6 mb-3">
@@ -124,13 +133,13 @@
                                 </c:if>
 
                             </p>
-                            <c:set var="dateParsed" value="${art.dateFinEncheres}" scope="page" />
+                            <c:set var="dateParsed" value="${art.dateFinEncheres}" scope="page"/>
                             <p>Fin de l'enchère : <c:out
-                                    value="${pageScope.dateParsed.format(DateTimeFormatter.ofPattern(\"dd-MM-yyyy à HH:mm\"))}" /></p>
+                                    value="${pageScope.dateParsed.format(DateTimeFormatter.ofPattern(\"dd-MM-yyyy à HH:mm\"))}"/></p>
                             <p>Vendeur : jojo44</p>
                         </div>
                         <div class="w-50">
-                            <img src="${pageContext.request.contextPath}/images/poney.jpg" alt="poney"
+                            <img src="${pageContext.request.contextPath}/assets/img/images/poney.jpg" alt="poney"
                                  class="img-fluid">
                         </div>
                     </div>
