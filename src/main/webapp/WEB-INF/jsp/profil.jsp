@@ -158,6 +158,7 @@
 
                                     <div class="d-flex justify-content-end">
                                         <form action="supprimer" method="post">
+                                            <input hidden type="number" name="no_utilisateur" value="${utilisateur.no_utilisateur}" />
                                             <button type="submit" class="btn btn-danger">Supprimer votre Compte</button>
                                         </form>
 
