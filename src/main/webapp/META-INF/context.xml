@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Context>
+    <Resource
+            name="jdbc/poolEnchereDB"
+
+            driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+            type="javax.sql.DataSource"
+
+            url="jdbc:sqlserver://localhost;databasename=ENI-ENCHERES"
+            username="user_applicatif"
+            password="Pa$$w0rd"
+    />
+</Context>
