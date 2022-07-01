@@ -7,7 +7,6 @@ public enum NomCategories {
     SPORT_ET_LOISIRS;
 //    TOUTES;
 
-
 }
 
 
