@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -28,33 +29,45 @@ public class creationEnchere extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ArticleVenduDAOJdbcImpl articleVenduDAO = new ArticleVenduDAOJdbcImpl();
-        Utilisateur utilisateur = new Utilisateur(1);
+        HttpSession session = request.getSession();
+        Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
 
         Categorie cat = Categorie.getCategorieFromSelect(request.getParameter("categorie"));
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-        LocalDate dateDebut = LocalDate.parse(request.getParameter("dateDebut"), dtf);
-        LocalDateTime dateEtHeureDebut = LocalTime.parse(request.getParameter("heureDebut"), DateTimeFormatter.ofPattern(
-                "HH" + ":mm")).atDate(dateDebut);
+        LocalDate dateDebut = null;
+        LocalDateTime dateEtHeureDebut = null;
+        LocalDateTime dateEtHeureFin = null;
+        boolean finApresDebut = false;
+        boolean dateDebutOk = false;
+        if (!(request.getParameter("dateFin").isEmpty()) && (!request.getParameter("heureFin").isEmpty())) {
+            dateDebut = LocalDate.parse(request.getParameter("dateDebut"), dtf);
+            dateEtHeureDebut = LocalTime.parse(request.getParameter("heureDebut"), DateTimeFormatter.ofPattern(
+                    "HH" + ":mm")).atDate(dateDebut);
 
-        LocalDate dateFin = LocalDate.parse(request.getParameter("dateFin"), dtf);
-        LocalDateTime dateEtHeureFin = LocalTime.parse(request.getParameter("heureFin"), DateTimeFormatter.ofPattern(
-                "HH" +
-                        ":mm")).atDate(dateFin);
+            LocalDate dateFin = LocalDate.parse(request.getParameter("dateFin"), dtf);
+            dateEtHeureFin = LocalTime.parse(request.getParameter("heureFin"), DateTimeFormatter.ofPattern(
+                    "HH" +
+                            ":mm")).atDate(dateFin);
+            dateDebutOk = dateDebut.isAfter(LocalDate.now());
+            finApresDebut = dateEtHeureDebut.isBefore(dateEtHeureFin);
+
+        }
+
         int miseAPrix = 0;
         if (request.getParameter("miseAPrix").isEmpty()) {
             miseAPrix = 0;
-        }   else {
+        } else {
             miseAPrix = Integer.parseInt(request.getParameter("miseAPrix"));
         }
 
         boolean nomArticleOk =
                 request.getParameter("article").length() > 0;
         boolean descriptionOk = request.getParameter("description").length() > 0;
-        boolean finApresDebut = dateEtHeureDebut.isBefore(dateEtHeureFin);
+
         boolean miseAPrixOk = request.getParameter("miseAPrix").length() > 0;
-        boolean creationOk = nomArticleOk && finApresDebut && descriptionOk && miseAPrixOk;
+        boolean creationOk = nomArticleOk && finApresDebut && descriptionOk && miseAPrixOk && dateDebutOk;
 
         ArticleVendu articleVendu = new ArticleVendu(
                 request.getParameter("article"),
@@ -98,6 +111,9 @@ public class creationEnchere extends HttpServlet {
             }
             if (!miseAPrixOk) {
                 errorForm.setErreurPrix("La mise à prix doit être renseignée");
+            }
+            if (!dateDebutOk) {
+                errorForm.setErreurDateDebut("La date de début doit être renseignée");
             }
 
             request.setAttribute("errorForm", errorForm);

@@ -14,6 +14,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.apache.taglibs.standard.functions.Functions.containsIgnoreCase;
+
 @WebServlet(name = "Recherche", value = "/Recherche")
 public class Recherche extends HttpServlet {
     @Override
@@ -43,7 +45,11 @@ public class Recherche extends HttpServlet {
 //                articlesTrouves.add(article);
 //            }
 
-            if ((article.getDescription().contains(recherche)|| article.getNomArticle().contains(recherche))) {
+//            if ((article.getDescription().contains(recherche)|| article.getNomArticle().contains(recherche))) {
+//                articlesTrouves.add(article);
+//            }
+
+            if(containsIgnoreCase(article.getDescription(), recherche) || containsIgnoreCase(article.getNomArticle(), recherche)) {
                 articlesTrouves.add(article);
             }
         }

@@ -124,28 +124,31 @@
     <div class="form-group mb-2">
         <label for="dateDebut">Début de l'enchère</label>
         <input type="date" name="dateDebut" id="dateDebut" value="" class="form-control"/>
+        <input type="time" name="heureDebut" id="heureDebut" class="form-control"/>
     </div>
 
     <div class="form-group mb-2">
         <label for="dateFin">Fin de l'enchère</label>
         <input type="date" name="dateFin" id="dateFin" value="" class="form-control"/>
+        <input type="time" name="heureFin" id="heureFin" class="form-control"/>
     </div>
 
     <fieldset>
         <legend>Retrait</legend>
         <div class="form-group mb-2">
             <label for="rue">Rue :</label>
-            <input type="text" name="rue" id="rue" class="form-control"/>
+            <input type="text" name="rue" id="rue" class="form-control" value="${utilisateur.rue}"/>
         </div>
 
         <div class="form-group mb-2">
             <label for="codePostal">Code postal :</label>
-            <input type="text" name="codePostal" id="codePostal" class="form-control"/>
+            <input type="text" name="codePostal" id="codePostal" class="form-control"
+                   value="${utilisateur.code_postal}"/>
         </div>
 
         <div class="form-group mb-2">
             <label for="ville">Ville :</label>
-            <input type="text" name="ville" id="ville" class="form-control"/>
+            <input type="text" name="ville" id="ville" class="form-control" value="${utilisateur.ville}"/>
         </div>
 
     </fieldset>
